@@ -15,6 +15,7 @@
         public int 速度 { get; set; }
         public bool IsPlayer { get; set; }
         public bool 死亡标记 { get; set; } = false;
+        public 角色状态 角色状态 = 角色状态.正常;
 
         public List<技能> 技能组 { get; set; }
 
@@ -107,5 +108,15 @@
             Console.WriteLine();
 
         }
+
+        /// <summary>
+        /// 调用前需要先进行回合前检查
+        /// </summary>
+        /// <returns></returns>
+        public 角色状态 检查角色状态()
+        {
+            return 角色状态;
+        }
+
     }
 }
