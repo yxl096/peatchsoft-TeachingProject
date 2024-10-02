@@ -14,14 +14,14 @@
 
         public override void 角色行动前效果(角色 buff持有者)
         {
-            buff持有者.角色状态 = 角色状态.无法行动;
+            buff持有者.状态 = 角色状态.无法行动;
             // 待完成：谁加的buff使谁无法行动
             Console.WriteLine($"{buff持有者.Name} 无法行动");
         }
 
         public override void 移除buff事件(角色 buff持有者)
         {
-            buff持有者.角色状态 = 角色状态.正常;
+            buff持有者.状态 = 角色状态.正常;
         }
     }
 

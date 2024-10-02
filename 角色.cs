@@ -14,8 +14,9 @@
         public int 防御力 { get; set; }
         public int 速度 { get; set; }
         public bool IsPlayer { get; set; }
-        public bool 死亡标记 { get; set; } = false;
-        public 角色状态 角色状态 = 角色状态.正常;
+        public bool 死亡标记 { get; set; }
+        public 角色状态 状态 { get; set; }
+
 
         public List<技能> 技能组 { get; set; }
 
@@ -31,6 +32,8 @@
             this.防御力 = 防御力;
             this.速度 = 速度;
             this.技能组 = 技能组;
+            死亡标记 = false;
+            状态 = 角色状态.正常;
             Buff池 = new List<Buff>();
         }
 
@@ -115,7 +118,7 @@
         /// <returns></returns>
         public 角色状态 检查角色状态()
         {
-            return 角色状态;
+            return 状态;
         }
 
     }
