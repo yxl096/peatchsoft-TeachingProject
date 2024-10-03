@@ -1,5 +1,9 @@
 ﻿namespace 战斗小游戏
 {
+    /// <summary>
+    /// Author: 上单
+    /// Description: 前排的觉悟
+    /// </summary>
     class 前排的觉悟 : 技能
     {
         public 前排的觉悟()

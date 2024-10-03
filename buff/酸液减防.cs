@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace 战斗小游戏
 {
+    /// <summary>
+    /// Author: 上单
+    /// Description: 酸液减防
+    /// </summary>
     class 酸液减防 : Buff
     {
         public int 防御力降低值;

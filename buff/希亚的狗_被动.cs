@@ -1,5 +1,9 @@
 ﻿namespace 战斗小游戏
 {
+    /// <summary>
+    /// Author: 上单
+    /// Description: 希亚的狗_被动
+    /// </summary>
     class 希亚的狗_被动 : Buff
     {
         public 角色 承伤对象;

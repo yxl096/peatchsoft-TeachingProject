@@ -1,5 +1,9 @@
 ﻿namespace 战斗小游戏
 {
+    /// <summary>
+    /// Author: 上单
+    /// Description: 不动如山_被动
+    /// </summary>
     class 不动如山_被动 : Buff
     {
         public 不动如山_被动(string 创建者,  int 技能倍率)

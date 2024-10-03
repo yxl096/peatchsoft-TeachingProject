@@ -1,5 +1,9 @@
 ﻿namespace 战斗小游戏
 {
+    /// <summary>
+    /// Author: 上单
+    /// Description: 酸液
+    /// </summary>
     class 酸液 : 技能
     {
         public int 防御力降低值;

@@ -2,7 +2,10 @@
 {
     class 不动如山 : 技能
     {
-        
+        /// <summary>
+        /// Author: 上单
+        /// Description: 不动如山
+        /// </summary>
         public 不动如山()
         {
             Name = "不动如山";
