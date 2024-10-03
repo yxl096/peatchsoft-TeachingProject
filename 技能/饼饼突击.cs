@@ -19,7 +19,7 @@
             Console.WriteLine($"{技能持有者.Name} 发动技能 {Name}");
             Console.WriteLine($"技能 {Name} 使 {技能持有者.Name} 的普通攻击获得连击");
             // 为技能持有者提供一个buff
-            技能持有者.AddBuff(new 连击_被动(Name, 100));
+            技能持有者.buff池.Add(new 连击_被动(Name, 100));
         }
 
         public override 技能状态 释放合法性检查(角色 释放者)

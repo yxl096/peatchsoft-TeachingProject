@@ -18,7 +18,7 @@ namespace 战斗小游戏
         {
             string message = $"{释放者.Name} 发动核爆";
             int 伤害值 = 999900000;
-            伤害效果 核爆 = new 伤害效果(释放者, 目标, Name, message, 伤害类型.物理伤害, 攻击类型.技能伤害, 伤害值);
+            伤害效果 核爆 = new 伤害效果(释放者, 目标, Name, message, 伤害类型.物理, 攻击类型.技能伤害, 伤害值);
             战斗管理器.GetInstance().处理伤害事件(new DamageInfo(核爆));
         }
         public override 技能状态 释放合法性检查(角色 释放者)

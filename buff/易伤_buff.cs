@@ -13,7 +13,7 @@
             MagicNumber = 33;
         }
 
-        public override void 受到攻击效果(角色 buff持有者, DamageInfo 攻击事件) 
+        public override void 受到普通攻击效果(角色 buff持有者, DamageInfo 攻击事件) 
         {
             伤害效果 damage = 攻击事件.GetDamage();
             damage.Value = damage.Value * (100 + MagicNumber / 100);

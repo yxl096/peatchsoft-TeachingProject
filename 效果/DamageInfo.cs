@@ -15,6 +15,11 @@ namespace 战斗小游戏
             效果序列.AddLast(damage);
         }
 
+        public DamageInfo()
+        {
+            效果序列 = new LinkedList<伤害效果>();
+        }
+
         public void AddDamageToLast(伤害效果 damage)
         {
             效果序列.AddLast(damage);

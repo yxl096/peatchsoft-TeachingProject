@@ -26,9 +26,18 @@
             // 计算伤害值
             int 伤害值 = 释放者.攻击力 * 伤害倍率 / 100;
 
+            // 创建DamageInfo
+            DamageInfo 伤害事件 = new DamageInfo();
+
+            // 为每个目标添加伤害效果
+            foreach (var 目标角色 in 目标)
+            {
+                伤害事件.AddDamageToLast(new 伤害效果(释放者, 目标角色, Name, message, 
+                    伤害类型, 攻击类型.普通攻击, 伤害值));
+            }
+
             // 为战斗管理器传递攻击指令
-            伤害效果 普通攻击 = new 伤害效果(释放者, 目标, Name, message, 伤害类型, 攻击类型.普通攻击, 伤害值);
-            战斗管理器.GetInstance().处理伤害事件(new DamageInfo(普通攻击));
+            战斗管理器.GetInstance().处理伤害事件(伤害事件);
         }
 
         public override 技能状态 释放合法性检查(角色 释放者)

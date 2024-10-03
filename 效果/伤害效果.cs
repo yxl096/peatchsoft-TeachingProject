@@ -9,23 +9,25 @@ namespace 战斗小游戏
     class 伤害效果
     {
         public 角色 发动者 { get; set; }
-        public 角色[] 承受者 { get; set; }
+        public 角色 承受者 { get; set; }
         public string 创建者 { get; set; }
         public string Message { get; set; }
         public 伤害类型 DamageType { get; set; }
         public 攻击类型 AttackType { get; set; }
-        public int Value { get; set; }
+        public int 基础伤害 { get; set; }
+        public int 最终伤害 { get; set; }
 
-        public 伤害效果(角色 发动者, 角色[] 承受者, string 创建者, string message,
+        public 伤害效果(角色 发动者, 角色 承受者, string 创建者, string message,
             伤害类型 damageType, 攻击类型 attackType, int value)
         {
             this.发动者 = 发动者;
             this.承受者 = 承受者;
             this.创建者 = 创建者;
-            this.Message = message;
-            this.DamageType = damageType;
-            this.AttackType = attackType;
-            this.Value = value;
+            Message = message;
+            DamageType = damageType;
+            AttackType = attackType;
+            基础伤害 = value;
+            最终伤害 = value;
         }
 
         public 伤害效果 Clone()

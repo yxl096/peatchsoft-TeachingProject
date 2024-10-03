@@ -20,7 +20,7 @@
             {
                 if(角色.Name == "希亚")
                 {
-                    角色.AddBuff(new 希亚的狗_被动(Name, 技能持有者));
+                    角色.AddBuff(new 援护友军_被动(Name, 技能持有者));
                 }
             }
             

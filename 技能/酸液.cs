@@ -2,36 +2,39 @@
 {
     /// <summary>
     /// Author: 上单
+    /// 修复：桃
     /// Description: 酸液
     /// </summary>
     class 酸液 : 技能
     {
-        public int 防御力降低值;
-        public 酸液(int 消耗MP)
+        public int 持续回合;
+        public 酸液(int 倍率, int 持续回合)
         {
             Name = "酸液";
             技能描述 = "减少敌方防御力";
             是主动技能 = true;
             有效目标 = 允许目标.敌方单体;
             发动概率 = 100;
-            this.消耗MP = 消耗MP;
+            消耗MP = 100;
+            this.倍率 = 倍率;
+            this.持续回合 = 持续回合;
         }
 
         public override void 使用技能(角色 释放者, 角色[] 技能目标)
         {
-            string message = $"{释放者.Name} 发动酸液";
+            // 扣除mp
+            释放者.MP -= 消耗MP;
+
+            Console.WriteLine($"{释放者.Name} 发动酸液");
 
             foreach (var 目标角色 in 技能目标)
             {
-                // 防御力减少多少
-                int 防御力降低值 = 目标角色.防御力;
+                // 计算出具体减防数值
+                int 防御力降低值 = 目标角色.防御力 * 倍率 / 100;
 
-                // 当场扣除，等buff结束加回去
-                目标角色.防御力 -= 防御力降低值;
-
-                目标角色.AddBuff(new 酸液减防(Name, 防御力降低值));
+                Console.WriteLine($"{目标角色.Name} 的防御力降低了 {防御力降低值}");
+                目标角色.AddBuff(new 防御力降低(Name, 防御力降低值, 2));
             }
-
         }
 
         public override 技能状态 释放合法性检查(角色 释放者)
