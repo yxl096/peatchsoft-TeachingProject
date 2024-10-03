@@ -34,5 +34,7 @@
         public virtual void 受到法术伤害效果(角色 buff持有者, DamageInfo 攻击事件) { }
 
         public virtual void 重复施加(Buff b) { }
+
+        public virtual void 移除buff事件(角色 buff持有者) { }
     }
 }
