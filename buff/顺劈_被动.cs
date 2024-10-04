@@ -16,7 +16,7 @@
             MagicNumber = 技能倍率;
         }
 
-        public override void 发动普通攻击效果(角色 buff持有者, DamageInfo 攻击事件)
+        public override bool 发动普通攻击效果(角色 buff持有者, DamageInfo 攻击事件)
         {
             伤害效果 damage = 攻击事件.GetDamage();
 
@@ -46,12 +46,15 @@
                     顺劈.创建者 = 创建者;
 
                     // 乘算伤害倍率
-                    顺劈.最终伤害 = (int)(顺劈.最终伤害 * MagicNumber / 100.0);
+                    顺劈.基础伤害 = 顺劈.基础伤害 * MagicNumber / 100;
 
                     // 将新的攻击事件加入攻击事件序列
                     攻击事件.AddDamageToNext(顺劈);
                 }
             }
+
+            //执行结束返回true
+            return true;
         }
     }
 }

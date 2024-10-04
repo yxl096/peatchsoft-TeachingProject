@@ -47,13 +47,14 @@ namespace 战斗小游戏
                 //技能文本
                 string message = $"{roll.Name} 受到 {释放者.Name} {治疗量}点治疗";
 
-                //将释放对象角色转换为角色数组
-                角色[] rollNamei = new 角色[] { roll };
-                //治疗目标重定义到已选定的三位友方单位之一
-                目标 = rollNamei;
+                ///将释放对象角色转换为角色数组
+                ///角色[] rollNamei = new 角色[] { roll };
+                ///治疗目标重定义到已选定的三位友方单位之一
+                ///目标 = rollNamei;
+                ///废弃流程，如目标角色后续修改为数组再启用
 
                 //进行治疗流程
-                伤害效果 液化 = new 伤害效果(释放者, 目标, Name, message, 伤害类型.治疗, 攻击类型.技能伤害, 治疗量);
+                伤害效果 液化 = new 伤害效果(释放者, roll, Name, message, 伤害类型.治疗, 攻击类型.技能伤害, 治疗量);
                 战斗管理器.GetInstance().处理伤害事件(new DamageInfo(液化));
 
             }
