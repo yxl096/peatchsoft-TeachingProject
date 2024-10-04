@@ -6,12 +6,14 @@
     /// </summary>
     class 见一个爱一个 : 技能
     {
-        public 见一个爱一个()
+        int 溅射伤害倍率;
+        public 见一个爱一个(int 溅射伤害倍率)
         {
             Name = "见一个爱一个";
-            技能描述 = "普通攻击可以同时攻击到所有敌方角色(伤害倍率：70%)";
+            技能描述 = $"普通攻击可以同时攻击到所有敌方角色(伤害倍率：{溅射伤害倍率}%)";
             是主动技能 = false;
             有效目标 = 允许目标.敌方全体;
+            this.溅射伤害倍率 = 溅射伤害倍率;
         }
 
         public override void 被动效果(角色 技能持有者)
@@ -19,7 +21,7 @@
             Console.WriteLine($"{技能持有者.Name} 发动技能 {Name}");
             Console.WriteLine($"技能 {Name} 使 {技能持有者.Name} 的普通攻击可以攻击所有敌人");
             // 为技能持有者提供一个buff
-            技能持有者.buff池.Add(new 顺劈_被动(Name, 70));
+            技能持有者.buff池.Add(new 顺劈_被动(Name, 溅射伤害倍率));
         }
 
         public override 技能状态 释放合法性检查(角色 释放者)

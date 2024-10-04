@@ -13,6 +13,7 @@
         public int 冷却剩余 { get; set; } = 0;
         public int 发动概率 { get; set; } = 100;
         public int 倍率 { get; set; } = 100;
+        public int 持续回合 { get; set; }
         public int 消耗MP { get; set; } = 0;
 
         public 允许目标 有效目标 { get; set; } = 允许目标.自己;

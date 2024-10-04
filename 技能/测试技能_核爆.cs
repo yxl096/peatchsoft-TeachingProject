@@ -17,9 +17,13 @@ namespace 战斗小游戏
         public override void 使用技能(角色 释放者, 角色[] 目标)
         {
             string message = $"{释放者.Name} 发动核爆";
-            int 伤害值 = 999900000;
-            伤害效果 核爆 = new 伤害效果(释放者, 目标, Name, message, 伤害类型.物理, 攻击类型.技能伤害, 伤害值);
-            战斗管理器.GetInstance().处理伤害事件(new DamageInfo(核爆));
+            int 伤害值 = 9999999;
+            DamageInfo 伤害事件 = new DamageInfo();
+            foreach (var 目标角色 in 目标)
+            {
+                伤害事件.AddDamageToLast(new 伤害效果(释放者, 目标角色, Name, message, 伤害类型.物理, 攻击类型.技能伤害, 伤害值));
+            }
+            战斗管理器.GetInstance().处理伤害事件(伤害事件);
         }
         public override 技能状态 释放合法性检查(角色 释放者)
         {

@@ -7,7 +7,6 @@
     /// </summary>
     class 酸液 : 技能
     {
-        public int 持续回合;
         public 酸液(int 倍率, int 持续回合)
         {
             Name = "酸液";
@@ -25,15 +24,15 @@
             // 扣除mp
             释放者.减MP(消耗MP);
 
-            Console.WriteLine($"{释放者.Name} 发动酸液");
+            Console.WriteLine($"{释放者.Name} 发动 {Name}");
 
             foreach (var 目标角色 in 技能目标)
             {
                 // 计算出具体减防数值
                 int 防御力降低值 = 目标角色.防御力 * 倍率 / 100;
-
-                Console.WriteLine($"{目标角色.Name} 的防御力降低了 {防御力降低值}");
-                目标角色.buff池.Add(new 属性变更buff(角色属性.防御力, 2, Name, 持续回合));
+                // 注意，这里传入负值
+                目标角色.buff池.Add(new 属性变更buff(角色属性.防御力, -防御力降低值, Name, 持续回合));
+                Console.WriteLine($"{目标角色.Name} 的防御力降低了 {防御力降低值} ({目标角色.防御力 + 防御力降低值} => {目标角色.防御力})");
             }
         }
 

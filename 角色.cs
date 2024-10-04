@@ -13,6 +13,7 @@ namespace 战斗小游戏
         public int HP { get; private set; }
         public int 法力值上限 { get; private set; }
         public int MP { get; private set; }
+        public int 基础攻击力 { get; private set; }
         public int 攻击力
         { 
             get
@@ -21,7 +22,7 @@ namespace 战斗小游戏
             }
             private set { }
         }
-        private int 基础攻击力;
+        public int 基础法强 { get; private set; }
         public int 法术强度
         {
             get
@@ -30,7 +31,7 @@ namespace 战斗小游戏
             }
             private set { }
         }
-        private int 基础法强;
+        public int 基础防御力 { get; private set; }
         public int 防御力
         {
             get
@@ -39,7 +40,7 @@ namespace 战斗小游戏
             }
             private set { }
         }
-        private int 基础防御力;
+        public int 基础速度 { get; private set; }
         public int 速度
         {
             get
@@ -48,14 +49,13 @@ namespace 战斗小游戏
             }
             private set { }
         }
-        private int 基础速度;
         public bool IsPlayer { get; set; }
         public bool 死亡标记 { get; private set; }
         public 角色状态 状态
         {
             get
             {
-                return buff池.获取角色状态();
+                return buff池.获取角色状态(this);
             }
             private set { }
         }

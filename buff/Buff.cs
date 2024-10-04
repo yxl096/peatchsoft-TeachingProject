@@ -34,7 +34,7 @@
         public virtual bool 受到物理伤害效果(角色 buff持有者, DamageInfo 攻击事件) { return true; }
         public virtual bool 受到法术伤害效果(角色 buff持有者, DamageInfo 攻击事件) { return true; }
 
-        public virtual 角色状态 获取角色状态() { return 角色状态.正常; }
+        public virtual 角色状态 获取角色状态(角色 buff持有者) { return 角色状态.正常; }
 
         public virtual void 重复施加(Buff b)
         {

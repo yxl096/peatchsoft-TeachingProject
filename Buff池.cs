@@ -157,43 +157,45 @@ namespace 战斗小游戏
             return 速度;
         }
 
-        public 角色状态 获取角色状态()
+        public 角色状态 获取角色状态(角色 buff持有者)
         {
             bool 禁止普攻 = false;
             bool 禁止技能 = false;
+            bool 无法行动 = false;
             foreach (Buff buff in 常规buff池.Values)
             {
-                角色状态 状态 = buff.获取角色状态();
+                角色状态 状态 = buff.获取角色状态(buff持有者);
                 switch (状态)
                 {
                     case 角色状态.正常:
                         break;
 
                     case 角色状态.无法行动:
-                        return 角色状态.无法行动;
+                        无法行动 = true;
+                        break;
 
                     case 角色状态.禁止普攻:
                         禁止普攻 = true;
-                        if (禁止技能)
-                            return 角色状态.无法行动;
                         break;
 
                     case 角色状态.禁止使用技能:
                         禁止技能 = true;
-                        if (禁止普攻)
-                            return 角色状态.无法行动;
                         break;
 
                     case 角色状态.镇静:
                         return 角色状态.正常;
                 }
             }
+            if (无法行动)
+                return 角色状态.无法行动;
+            if (禁止普攻 && 禁止技能)
+                return 角色状态.无法行动;
             if (禁止普攻)
                 return 角色状态.禁止普攻;
-            else if (禁止技能)
+            if (禁止技能)
                 return 角色状态.禁止使用技能;
-            else
-                return 角色状态.正常;
+
+            return 角色状态.正常;
         }
     }
 }

@@ -42,7 +42,7 @@
 
                 if(罪恶值 > 释放者.法术强度 * 10)
                 {
-                    易伤_buff buff = new 易伤_buff();
+                    易伤 buff = new 易伤();
                     目标角色.AddBuff(buff);
                     Console.WriteLine($"{释放者.Name} 发动技能 {Name},使{目标角色.Name} 获得易伤效果");
                 }

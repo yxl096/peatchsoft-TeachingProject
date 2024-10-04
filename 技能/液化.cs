@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace 战斗小游戏
+﻿namespace 战斗小游戏
 {
     /// <summary>
-    /// Author: 陈
+    /// 负责人: 陈
     /// Description: 液化主动技能：为友军提供3次目标随机100%法术强度的恢复
     /// </summary>
-    internal class 液化 : 技能
+    class 液化 : 技能
     {
-        public 液化()
+        public 液化(int 倍率)
         {
             Name = "液化";
-            技能描述 = "为友军提供3次目标随机100%法术强度的生命恢复";
+            技能描述 = $"为友军提供3次目标随机{倍率}%法术强度的生命恢复";
             是主动技能 = true;
             有效目标 = 允许目标.友方全体;
-            倍率 = 100;
+            this.倍率 = 倍率;
         }
 
         public override void 使用技能(角色 释放者, 角色[] 目标)
@@ -28,15 +22,15 @@ namespace 战斗小游戏
 
             int 治疗量 = 释放者.法术强度 * 倍率 / 100;
 
-            //提取友方单位数组
+            // 提取友方单位数组
             目标 = 战斗管理器.GetInstance().友方;
 
-            //创建随机数实例
+            // 创建随机数实例
             Random rand = new Random();
-            //创建存储3个选择目标的角色数组
+            // 创建存储3个选择目标的角色数组
             角色[] rollName = new 角色[3];
 
-            //进行三次循环选择对象
+            // 进行三次循环选择对象
             for (int i = 0; i < 3; i++)
             {
                 rollName[i] = 目标[rand.Next(目标.Length)];//选择治疗单位

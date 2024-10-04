@@ -17,7 +17,7 @@
         public override void 被动效果(角色 技能持有者)
         {
             角色[] 敌方全体 = 战斗管理器.GetInstance().敌人;
-            // 为敌方提供 罪恶 buff
+            // 为敌方全体增加罪恶值机制buff
             foreach (var 角色 in 战斗管理器.GetInstance().敌人)
             {
                 角色.buff池.Add(new 罪恶值系统(Name));

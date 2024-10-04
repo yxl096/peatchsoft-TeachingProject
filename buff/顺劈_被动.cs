@@ -11,7 +11,8 @@
             UUID = "普通攻击可以伤害所有敌人";
             this.创建者 = 创建者;
             可以被驱散 = false;
-            是正面buff = true;
+            // 被动不标记为正面buff或负面buff
+            是正面buff = false;
             是负面buff = false;
             MagicNumber = 技能倍率;
         }
@@ -20,7 +21,7 @@
         {
             伤害效果 damage = 攻击事件.GetDamage();
 
-            bool flag = true;
+            Console.WriteLine($"{创建者} 使 {buff持有者.Name} 可以攻击所有敌人");
             // 选择普通攻击目标之外的所有敌人
             foreach (var 角色 in 战斗管理器.GetInstance().敌人)
             {
@@ -31,15 +32,7 @@
                     顺劈.承受者 = 角色;
 
                     // 追加攻击事件的信息
-                    if (flag)
-                    {
-                        顺劈.Message = $"{创建者} 使 {buff持有者.Name} 可以攻击所有敌人\n{buff持有者.Name} 的攻击造成溅射伤害";
-                        flag = false;
-                    }
-                    else
-                    {
-                        顺劈.Message = $"{buff持有者.Name} 的攻击造成溅射伤害";
-                    }
+                    顺劈.Message = $"{buff持有者.Name} 的攻击造成溅射伤害";
 
                     // 攻击类型修改为追击
                     顺劈.AttackType = 攻击类型.追击;

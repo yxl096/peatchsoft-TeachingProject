@@ -11,7 +11,8 @@
             UUID = "可以进行两次普通攻击";
             this.创建者 = 创建者;
             可以被驱散 = false;
-            是正面buff = true;
+            // 被动不标记为正面buff或负面buff
+            是正面buff = false;
             是负面buff = false;
             MagicNumber = 技能倍率;
         }
