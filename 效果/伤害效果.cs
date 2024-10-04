@@ -32,7 +32,7 @@ namespace 战斗小游戏
 
         public 伤害效果 Clone()
         {
-            return new 伤害效果(发动者, 承受者, 创建者, Message, DamageType, AttackType, Value);
+            return new 伤害效果(发动者, 承受者, 创建者, Message, DamageType, AttackType, 最终伤害);
         }
     }
 }
