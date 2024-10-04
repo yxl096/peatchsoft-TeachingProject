@@ -19,7 +19,7 @@
             Console.WriteLine($"{技能持有者.Name} 发动技能 {Name}");
             Console.WriteLine($"技能 {Name} 使 {技能持有者.Name} 的普通攻击可以攻击所有敌人");
             // 为技能持有者提供一个buff
-            技能持有者.AddBuff(new 顺劈_被动(Name, 70));
+            技能持有者.buff池.Add(new 顺劈_被动(Name, 70));
         }
 
         public override 技能状态 释放合法性检查(角色 释放者)

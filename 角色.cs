@@ -1,4 +1,6 @@
-﻿namespace 战斗小游戏
+﻿using System.Xml.Serialization;
+
+namespace 战斗小游戏
 {
     /// <summary>
     /// Author: 桃
@@ -91,7 +93,7 @@
                     伤害减免 = 0.95;
                 }
 
-                int 伤害 = (int)(damage.Value * 伤害减免);
+                int 伤害 = (int)(damage.最终伤害 * 伤害减免);
 
                 HP -= 伤害;
 
@@ -107,7 +109,7 @@
                     伤害减免 = 0.95;
                 }
 
-                int 伤害 = (int)(damage.Value * 伤害减免);
+                int 伤害 = (int)(damage.最终伤害 * 伤害减免);
 
                 HP -= 伤害;
 
@@ -131,13 +133,13 @@
 
         public void 获得治疗(伤害效果 damage)
         {
-            HP += damage.Value;
+            HP += damage.最终伤害;
             if (HP > 生命值上限)
             {
                 HP = 生命值上限;
             }
 
-            Console.WriteLine($"{Name} 获得了 {damage.Value} 点治疗");
+            Console.WriteLine($"{Name} 获得了 {damage.最终伤害} 点治疗");
 
             Console.WriteLine($"{Name} 剩余生命值：{HP}");
             Console.WriteLine();
@@ -146,13 +148,13 @@
 
         public void 获得法力值恢复(伤害效果 damage)
         {
-            MP += damage.Value;
+            MP += damage.最终伤害;
             if (MP > 法力值上限)
             {
                 MP = 法力值上限;
             }
 
-            Console.WriteLine($"{Name} 恢复了 {damage.Value} 点法力值");
+            Console.WriteLine($"{Name} 恢复了 {damage.最终伤害} 点法力值");
 
             Console.WriteLine($"{Name} 剩余法力值：{MP}");
             Console.WriteLine();
@@ -168,5 +170,10 @@
             return 状态;
         }
 
+        // 用于释放技能对法力值的扣除
+        public void 减MP(int MP减少值)
+        {
+            MP = MP - MP减少值;
+        }
     }
 }

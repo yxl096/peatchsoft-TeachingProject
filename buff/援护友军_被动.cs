@@ -6,13 +6,13 @@
     /// Description: 希亚的狗_被动
     /// 注：由于这个被动技能是复合效果，所以无法作为通用被动实现
     /// </summary>
-    class 希亚的狗_被动 : Buff
+    class 援护友军_被动 : Buff
     {
         public 角色 承伤对象;
         int 减伤概率;
         int 减伤倍率;
 
-        public 希亚的狗_被动(string 创建者, 角色 承伤对象, int 减伤概率, int 减伤倍率) 
+        public 援护友军_被动(string 创建者, 角色 承伤对象, int 减伤概率, int 减伤倍率) 
         {
             UUID = "援护友军";
             this.创建者 = 创建者;
@@ -49,13 +49,13 @@
 
             // 计算减伤
             if (new Random().Next(0, 101) < 减伤概率)
-                newDamage.Value = newDamage.Value * (100 - 减伤倍率) / 100;
+                newDamage.最终伤害 = newDamage.最终伤害 * (100 - 减伤倍率) / 100;
 
             // 加入新的伤害事件
             攻击事件.AddDamageToNext(newDamage);
 
             // 将本次伤害(希亚承受的)变为0
-            damage.Value = 0;
+            damage.最终伤害 = 0;
         }
 
         public override void 重复施加(Buff b)

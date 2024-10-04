@@ -46,7 +46,7 @@
                     顺劈.创建者 = 创建者;
 
                     // 乘算伤害倍率
-                    顺劈.Value = (int)(顺劈.Value * MagicNumber / 100.0);
+                    顺劈.最终伤害 = (int)(顺劈.最终伤害 * MagicNumber / 100.0);
 
                     // 将新的攻击事件加入攻击事件序列
                     攻击事件.AddDamageToNext(顺劈);

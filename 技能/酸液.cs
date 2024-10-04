@@ -23,7 +23,7 @@
         public override void 使用技能(角色 释放者, 角色[] 技能目标)
         {
             // 扣除mp
-            释放者.MP -= 消耗MP;
+            释放者.减MP(消耗MP);
 
             Console.WriteLine($"{释放者.Name} 发动酸液");
 
@@ -33,7 +33,7 @@
                 int 防御力降低值 = 目标角色.防御力 * 倍率 / 100;
 
                 Console.WriteLine($"{目标角色.Name} 的防御力降低了 {防御力降低值}");
-                目标角色.AddBuff(new 防御力降低(Name, 防御力降低值, 2));
+                目标角色.buff池.Add(new 属性变更buff(角色属性.防御力, 2, Name, 持续回合));
             }
         }
 
