@@ -50,9 +50,13 @@
             // 创建存储对应有效目标数量的角色数组
             角色[] rollName = new 角色[目标.Length];
 
-            // 进行三次循环选择对象
-            for (int i = 0; i < 3; i++)
+            // 进行对应队友次数的循环选择对象
+            for (int i = 0; i < 目标.Length; i++)
             {
+                for (;目标[rand.Next(目标.Length)].死亡标记 == false;) //判断目标是否已死亡
+                {
+                    continue;
+                }
                 rollName[i] = 目标[rand.Next(目标.Length)];//选择治疗单位
             }
 
