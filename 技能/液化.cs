@@ -20,20 +20,11 @@
 
         public override void 使用技能(角色 释放者, 角色[] 目标)
         {
-            //同时判断目标、MP、冷却
-            switch (目标.Length == 0 && 释放者.MP < this.消耗MP && 冷却剩余 > 0)
+            //判断目标数量
+            if (目标.Length == 0)
             {
-                case false when 目标.Length == 0:
                     // 目标无效
                     Console.WriteLine("技能无法释放：目标无效。");
-                    return;
-                case false when 释放者.MP < this.消耗MP:
-                    // MP不足
-                    Console.WriteLine("技能无法释放：MP不足。");
-                    return;
-                case false when 冷却剩余 > 0:
-                    // 冷却未完成
-                    Console.WriteLine("技能无法释放：冷却未完成。");
                     return;
             }
 
@@ -81,7 +72,24 @@
                 战斗管理器.GetInstance().处理伤害事件(new DamageInfo(液化));
 
             }
+            冷却剩余 = 2;
+        }
 
+        public override 技能状态 释放合法性检查(角色 释放者)
+        {
+            //同时判断目标、MP、冷却
+            switch (释放者.MP < this.消耗MP && 冷却剩余 > 0)
+            {
+                case false when 释放者.MP < this.消耗MP:
+                    // MP不足
+                    Console.WriteLine("技能无法释放：MP不足。");
+                    return 技能状态.MP不足;
+                case false when 冷却剩余 > 0:
+                    // 冷却未完成
+                    Console.WriteLine("技能无法释放：冷却未完成。");
+                    return 技能状态.冷却中;
+            }
+            return 技能状态.可用;
         }
     }
 }
