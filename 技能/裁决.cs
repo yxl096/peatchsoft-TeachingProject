@@ -28,19 +28,19 @@
                 string message = $"{释放者.Name} 进行裁决";
 
                 // 找到罪恶值
-                
-                
+                Buff 罪恶值;
+                Buff池.GetBuff("罪恶值系统",out 罪恶值);
 
                 //检查罪恶值，根据罪恶值释放技能
                 foreach (var 角色 in 战斗管理器.GetInstance().敌人)
                 {
-                    if (罪恶值 > 释放者.法术强度 * 5)
+                    if (罪恶值.MagicNumber > 释放者.法术强度 * 5)
                     {
                         角色.buff池.Add(new 眩晕(释放者.Name, 持续回合));
                         Console.WriteLine($"{释放者.Name} 发动技能 {Name},使{目标角色.Name} 眩晕");
                     }
 
-                    if (罪恶值 > 释放者.法术强度 * 10)
+                    if (罪恶值.MagicNumber > 释放者.法术强度 * 10)
                     {
                         角色.buff池.Add(new 易伤(释放者.Name, 倍率, 持续回合));
                         Console.WriteLine($"{释放者.Name} 发动技能 {Name},使{目标角色.Name} 获得易伤效果");
