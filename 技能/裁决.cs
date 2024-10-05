@@ -6,52 +6,56 @@
     /// </summary>
     class 裁决 : 技能
     {
-        public 裁决()
+        public 裁决(int 持续回合,int 倍率, int 眩晕时间)
         {
             Name = "裁决";
-            技能描述 = "检查敌方全体的罪恶值，罪恶值高于法术强度5倍的获得眩晕效果，高于法术强度10倍的获得受到伤害增加33%的debuff";
+            技能描述 = $"检查敌方全体的罪恶值，罪恶值高于法术强度5倍的获得眩晕{眩晕时间}回合的效果，高于法术强度10倍的获得受到伤害增加{倍率}的debuff";
             是主动技能 = true;
             有效目标 = 允许目标.敌方全体;
+            消耗MP = 150;
+            发动概率 = 100;
+            this.持续回合 = 持续回合;
+            this.倍率 = 倍率;
         }
 
         public override void 使用技能(角色 释放者, 角色[] 目标)
         {
+            //扣除MP
+            释放者.减MP(消耗MP);
+
             foreach (var 目标角色 in 目标)
             {
                 string message = $"{释放者.Name} 进行裁决";
 
                 // 找到罪恶值
-                int 罪恶值 = 0;
-                foreach (var buff in 目标角色.Buff池)
-                {
-                    if (buff is 罪恶值_buff)
-                    {
-                        // 类型转换，把buff类转换为具体的罪恶值_buff
-                        罪恶值_buff b = (罪恶值_buff)buff;
-                        罪恶值 = b.value;
-                    }
-                }
+                
+                
 
                 //检查罪恶值，根据罪恶值释放技能
-                if (罪恶值 > 释放者.法术强度 * 5)
+                foreach (var 角色 in 战斗管理器.GetInstance().敌人)
                 {
-                    眩晕 buff = new 眩晕();
-                    目标角色.AddBuff(buff);
-                    Console.WriteLine($"{释放者.Name} 发动技能 {Name},使{目标角色.Name} 眩晕");
-                }
+                    if (罪恶值 > 释放者.法术强度 * 5)
+                    {
+                        角色.buff池.Add(new 眩晕(释放者.Name, 持续回合));
+                        Console.WriteLine($"{释放者.Name} 发动技能 {Name},使{目标角色.Name} 眩晕");
+                    }
 
-                if(罪恶值 > 释放者.法术强度 * 10)
-                {
-                    易伤 buff = new 易伤();
-                    目标角色.AddBuff(buff);
-                    Console.WriteLine($"{释放者.Name} 发动技能 {Name},使{目标角色.Name} 获得易伤效果");
+                    if (罪恶值 > 释放者.法术强度 * 10)
+                    {
+                        角色.buff池.Add(new 易伤(释放者.Name, 倍率, 持续回合));
+                        Console.WriteLine($"{释放者.Name} 发动技能 {Name},使{目标角色.Name} 获得易伤效果");
+                    }
                 }
 
             }
         }
-        // 待完成：加蓝耗检查
+
         public override 技能状态 释放合法性检查(角色 释放者)
         {
+            if (释放者.MP < 消耗MP)
+            {
+                return 技能状态.MP不足;
+            }
             return 技能状态.可用;
         }
     }

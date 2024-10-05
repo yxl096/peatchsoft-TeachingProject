@@ -197,5 +197,19 @@ namespace 战斗小游戏
 
             return 角色状态.正常;
         }
+
+        public bool GetBuff(string buffUUID, out Buff buff)
+        {
+            // 检查是否在常规buff池中找到指定的buff
+            if (常规buff池.TryGetValue(buffUUID, out buff))
+            {
+                // 找到buff，返回true，并通过out参数输出该buff
+                return true;
+            }
+
+            // 如果buff不存在，返回false，同时out参数设置为null
+            buff = null;
+            return false;
+        }
     }
 }
