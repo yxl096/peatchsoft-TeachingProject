@@ -2,33 +2,62 @@
 {
     /// <summary>
     /// 负责人: 陈
-    /// Description: 液化主动技能：为友军提供3次目标随机100%法术强度的恢复
+    /// Description: 液化主动技能：为己方提供3次目标随机100%法术强度的恢复
     /// </summary>
     class 液化 : 技能
     {
         public 液化(int 倍率)
         {
             Name = "液化";
-            技能描述 = $"为友军提供3次目标随机{倍率}%法术强度的生命恢复";
+            技能描述 = $"为己方提供3次目标随机{倍率}%法术强度的生命恢复";
             是主动技能 = true;
             有效目标 = 允许目标.友方全体;
+            冷却 = 2;
+            冷却剩余 = 0;
+            消耗MP = 30;
             this.倍率 = 倍率;
         }
 
         public override void 使用技能(角色 释放者, 角色[] 目标)
         {
+            //同时判断目标、MP、冷却
+            switch (目标.Length == 0 && 释放者.MP < this.消耗MP && 冷却剩余 > 0)
+            {
+                case false when 目标.Length == 0:
+                    // 目标无效
+                    Console.WriteLine("技能无法释放：目标无效。");
+                    return;
+                case false when 释放者.MP < this.消耗MP:
+                    // MP不足
+                    Console.WriteLine("技能无法释放：MP不足。");
+                    return;
+                case false when 冷却剩余 > 0:
+                    // 冷却未完成
+                    Console.WriteLine("技能无法释放：冷却未完成。");
+                    return;
+            }
 
             Console.WriteLine($"{释放者.Name} 使用了 {Name}");
 
             int 治疗量 = 释放者.法术强度 * 倍率 / 100;
 
-            // 提取友方单位数组
-            目标 = 战斗管理器.GetInstance().友方;
+            // 提取对应目标
+            if (释放者.IsPlayer)
+            {
+                // 提取友方单位数组
+                目标 = 战斗管理器.GetInstance().友方;
+            }
+            else
+            {
+                // 提取敌人单位数组
+                目标 = 战斗管理器.GetInstance().敌人;
+            }
+
 
             // 创建随机数实例
             Random rand = new Random();
-            // 创建存储3个选择目标的角色数组
-            角色[] rollName = new 角色[3];
+            // 创建存储对应有效目标数量的角色数组
+            角色[] rollName = new 角色[目标.Length];
 
             // 进行三次循环选择对象
             for (int i = 0; i < 3; i++)
