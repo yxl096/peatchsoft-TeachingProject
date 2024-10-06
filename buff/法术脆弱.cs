@@ -1,25 +1,25 @@
 ﻿namespace 战斗小游戏
 {
     /// <summary>
-    /// Author: 桃
-    /// Description: 易伤机制模版
+    /// Author: 上单
+    /// Description: 脆弱机制
     /// </summary>
-    class 易伤 : Buff
+    class 法术脆弱 : Buff
     {
-        public 易伤(string 创建者, int 易伤倍率, int 持续回合)
+        public 法术脆弱(string 创建者, int 脆弱倍率, int 持续回合)
         {
-            UUID = "受到物理伤害增加";
+            UUID = "受到法术伤害增加";
             可以被驱散 = true;
             是负面buff = true;
             是正面buff = false;
             this.创建者 = 创建者;
-            MagicNumber = 易伤倍率;
+            MagicNumber = 脆弱倍率;
             this.持续回合 = 持续回合;
         }
 
 
 
-        public override bool 受到物理伤害效果(角色 buff持有者, DamageInfo 攻击事件) 
+        public override bool 受到法术伤害效果(角色 buff持有者, DamageInfo 攻击事件)
         {
             伤害效果 damage = 攻击事件.GetDamage();
             int 增加伤害 = damage.基础伤害 * MagicNumber / 100;

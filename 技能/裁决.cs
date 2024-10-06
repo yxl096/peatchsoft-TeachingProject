@@ -42,7 +42,7 @@
 
                     if (罪恶值.MagicNumber > 释放者.法术强度 * 10)
                     {
-                        角色.buff池.Add(new 易伤(释放者.Name, 倍率, 持续回合));
+                        角色.buff池.Add(new 全伤害易伤(释放者.Name, 倍率, 持续回合));
                         Console.WriteLine($"{释放者.Name} 发动技能 {Name},使{目标角色.Name} 获得易伤效果");
                     }
                 }

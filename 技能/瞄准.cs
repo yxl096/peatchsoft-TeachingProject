@@ -10,7 +10,6 @@ namespace 战斗小游戏
     class 瞄准 : 技能
     {
         public int 易伤倍率;
-        public int 持续回合;
         public 瞄准(int 易伤倍率, int 持续回合) 
         {
             Name = "瞄准";
@@ -30,9 +29,16 @@ namespace 战斗小游戏
 
             foreach (var 目标角色 in 技能目标)
             {
-                目标角色.buff池.Add(new 瞄准标记(Name, 10, 10, 3));
-                
+                目标角色.buff池.Add(new 瞄准标记(Name, 10, 3, 释放者));
             }
+        }
+        public override 技能状态 释放合法性检查(角色 释放者)
+        {
+            if (释放者.MP < 消耗MP)
+            {
+                return 技能状态.MP不足;
+            }
+            return 技能状态.可用;
         }
     }
 }
